@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Catalogue</title>
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="MyCat" ng-controller="CatController">
+<div>
+	<form class="container spacer">
+		<label> Mot clé  </label>
+		<input type="text" ng-model="motCle">
+		<button ng-click="charcher()">Charcher</button>
+	</form>
+</div>
+<div class="container ">
+	 <table class="table table-striped" >
+	 	<thead>
+	 		<tr>
+	 		<th>REF</th> <th>DES</th> <th>PRIX</th>
+	 		</tr>
+	 	</thead>
+	 	<tbody>
+	 		<tr ng-repeat="p in produits.content">
+	 			<td>{{ p.reference }}</td>
+	 			<td>{{ p.designation }}</td>
+	 			<td>{{ p.prix }}</td>
+	 		</tr>
+	 	</tbody>
+	 </table>
+</div>
+<div class="container">
+	<ul ng-class="{active:$index==pageCourante}"  class="nav nav-pills">
+		<li class="cliquable" ng-repeat="p in pages track by $index">
+			<a ng-click="gotoPage($index)">{{ $index }}</a>
+		</li>
+	</ul>
+</div>
+	<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
